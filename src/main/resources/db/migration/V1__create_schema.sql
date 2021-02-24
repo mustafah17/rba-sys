@@ -39,6 +39,6 @@ CREATE TABLE booking (
     user_id int,
     table_id int,
     PRIMARY KEY (booking_id),
-    FOREIGN KEY (userid) REFERENCES user(user_id),
-    FOREIGN KEY (tableid) REFERENCES dining_table(table_id)
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (table_id) REFERENCES dining_table(table_id)
 );

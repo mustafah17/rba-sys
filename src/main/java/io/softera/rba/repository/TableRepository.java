@@ -28,7 +28,7 @@ public class TableRepository {
 
     //Establish connection to h2 in memory database
     @Resource
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     //Insert user into db, return number of rows updated
     public int save(Table t) {
@@ -36,14 +36,14 @@ public class TableRepository {
                 .addValue("tableNo", t.getTableNo())
                 .addValue("restaurantId", t.getRestaurantId())
                 .addValue("tableCapacity", t.getTableSize());
-        return jdbcTemplate.update(insert, params);
+        return namedParameterJdbcTemplate.update(insert, params);
     }
 
     //Return tables given the table size/capacity
     public Table findBySize(int capacity) {
         SqlParameterSource params = new MapSqlParameterSource()
                 .addValue("tableCapacity", capacity);
-        return jdbcTemplate.queryForObject(selectSize, params, rowMapper);
+        return namedParameterJdbcTemplate.queryForObject(selectSize, params, rowMapper);
     }
 
 
